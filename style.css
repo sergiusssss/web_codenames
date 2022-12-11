@@ -3,6 +3,11 @@
     color: #666;
 }
 
+.table-game tr td button {
+    background: #666;
+    color: #666;
+}
+
 .game tr td button {
     /* background: #; */
 }

@@ -69,7 +69,9 @@
             <!-- <button class="clear">Clear</button> -->
         </div>
 
-        <div class="render"></div>
+        <div class="render">
+
+        </div>
 
         <script>
             window.selectedValue = 0;
@@ -87,6 +89,47 @@
                     $(el).removeClass('blue');
                     $(el).removeClass('red');
                     $(el).removeClass('white');
+                }
+
+                var selectClassByNum = function (num) {
+                    switch (num) {
+                        case 0:
+                            return 'black';
+                        case 1:
+                            return 'white';
+                        case 2:
+                            return 'blue';
+                        case 3:
+                            return 'red';
+                        default:
+                            return '';
+                    }
+                }
+
+                var renderTable = function (array) {
+                    var value = array;
+
+                    if (JSON.parse(value)) {
+                        var array = JSON.parse(value);
+                        var tdsCount = 5;
+
+                        var html = '<table class="table-game">';
+                        for (var i in _.chunk(array, tdsCount)) {
+                            var tds = _.chunk(array, tdsCount)[i];
+
+                            html += '<tr>';
+                            for (var j in tds) {
+                                var td = tds[j];
+
+                                html += '<td><button class="' + selectClassByNum(td) + '">' 
+                                     + td + '</button></td>';
+                            }
+                            html += '</tr>';
+                        }
+                        html += '</table><br>';
+
+                        $('.render').append(html);
+                    }
                 }
 
                 $(document).on('click', '.table button', function (event) {
@@ -122,25 +165,8 @@
                     });
 
                     console.log(JSON.stringify(result));
+                    renderTable(JSON.stringify(result));
                 })
-
-                // $(document).on('click', '.check', function (event) {
-                //     var result = [];
-
-                //     $('.table tr').each(function (i, trEl) {
-                //         var parent = $(trEl);
-
-                //         parent.find('td').each(function (j, tdEl) {
-                //             result.push(Number($(tdEl).text()));
-                //         });
-                //     });
-
-                //     console.log(JSON.stringify(result));
-                // });
-
-                // $(document).on('click', '.clear', function () {
-                //     document.location.reload();
-                // });
             });
         </script>
     </body>
