@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <script 
+            src="https://code.jquery.com/jquery-3.6.1.min.js" 
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <style>
+            .table tr td button {
+                background: #666;
+                color: #666;
+            }
+
+            .active {
+                background-color: #f5f5f5;
+                color: #000;
+            }
+
+            .red {
+                background-color: red !important;
+                color: red !important;
+            }
+
+            .blue {
+                background-color: blue !important;
+                color: blue !important;
+            }
+
+            .black {
+                background-color: black !important;
+                color: black !important;
+            }
+
+            .white {
+                background-color: #f5f5f5 !important;
+                color: #f5f5f5 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                </tr>
+                <tr>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                </tr>
+                <tr>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                </tr>
+                <tr>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                </tr>
+                <tr>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                    <td><button class="white">1</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <button  class="select" data-value="3">RED</button>
+            <button  class="select" data-value="2">BLUE</button>
+            <button  class="select" data-value="1">WHITE</button>
+            <button  class="select" data-value="0">BLACK</button>
+        </div>
+
+        <br>
+        <div>
+            <button class="save">Save</button>
+            <button class="reset">Reset</button>
+
+        </div>
+
+        <script>
+            window.selectedValue = 0;
+
+            $(function () {
+                $(document).on('click', '.select', function (event) {
+                    $('.active').removeClass('active');
+                    window.selectedValue = Number($(this).data('value'));
+                    $(this).addClass('active');
+                });
+
+                var removeColorClass = function (el) {
+                    $(el).removeClass('black');
+                    $(el).removeClass('blue');
+                    $(el).removeClass('red');
+                    $(el).removeClass('white');
+                }
+
+                $(document).on('click', '.table button', function (event) {
+                    $(this).text(window.selectedValue);
+
+                    switch (window.selectedValue) {
+                        case 0:
+                            removeColorClass($(this));
+                            $(this).addClass('black');
+                            return;
+                        case 1:
+                            removeColorClass($(this));
+                            $(this).addClass('white');
+                            return;
+                        case 2:
+                            removeColorClass($(this));
+                            $(this).addClass('blue');
+                            return;
+                        case 3:
+                            removeColorClass($(this));
+                            $(this).addClass('red');
+                            return;
+                    }
+                })
+
+                $(document).on('click', '.save', function (event) {
+                    var result = [];
+
+                    $('.table tr').each(function (i, trEl) {
+                        var parent = $(trEl);
+
+                        parent.find('td').each(function (j, tdEl) {
+                            result.push(Number($(tdEl).text()));
+                        });
+                    });
+
+                    console.log(JSON.stringify(result));
+                });
+
+                $(document).on('click', '.reset', function () {
+                    document.location.reload();
+                });
+            });
+        </script>
+    </body>
+</html>
