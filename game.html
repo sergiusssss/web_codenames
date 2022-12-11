@@ -3,6 +3,9 @@
         <script 
             src="https://code.jquery.com/jquery-3.6.1.min.js" 
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" 
+            integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
@@ -10,42 +13,42 @@
             <a href="/create.html">Create</a>
             <a href="/game.html">Game</a>
         </nav><br>
-        <table class="table">
+        <table class="table game">
             <tbody>
                 <tr>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
                 </tr>
                 <tr>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
                 </tr>
                 <tr>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
                 </tr>
                 <tr>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
                 </tr>
                 <tr>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
-                    <td><button class="white">1</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
+                    <td><button class="">5</button></td>
                 </tr>
             </tbody>
         </table>
@@ -59,13 +62,18 @@
 
         <br>
         <div>
-            <button class="save">Save</button>
-            <button class="reset">Reset</button>
-
+            <!-- <form action="#">
+                <input type="text" name="result" id="">
+                <button>Check</button>
+            </form><br> -->
+            <!-- <button class="clear">Clear</button> -->
         </div>
+
+        <div class="render"></div>
 
         <script>
             window.selectedValue = 0;
+            var array = '';
 
             $(function () {
                 $(document).on('click', '.select', function (event) {
@@ -88,23 +96,21 @@
                         case 0:
                             removeColorClass($(this));
                             $(this).addClass('black');
-                            return;
+                            break;
                         case 1:
                             removeColorClass($(this));
                             $(this).addClass('white');
-                            return;
+                            break;
                         case 2:
                             removeColorClass($(this));
                             $(this).addClass('blue');
-                            return;
+                            break;
                         case 3:
                             removeColorClass($(this));
                             $(this).addClass('red');
-                            return;
+                            break;
                     }
-                })
 
-                $(document).on('click', '.save', function (event) {
                     var result = [];
 
                     $('.table tr').each(function (i, trEl) {
@@ -116,11 +122,25 @@
                     });
 
                     console.log(JSON.stringify(result));
-                });
+                })
 
-                $(document).on('click', '.reset', function () {
-                    document.location.reload();
-                });
+                // $(document).on('click', '.check', function (event) {
+                //     var result = [];
+
+                //     $('.table tr').each(function (i, trEl) {
+                //         var parent = $(trEl);
+
+                //         parent.find('td').each(function (j, tdEl) {
+                //             result.push(Number($(tdEl).text()));
+                //         });
+                //     });
+
+                //     console.log(JSON.stringify(result));
+                // });
+
+                // $(document).on('click', '.clear', function () {
+                //     document.location.reload();
+                // });
             });
         </script>
     </body>
