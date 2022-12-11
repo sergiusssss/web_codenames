@@ -332,7 +332,8 @@
                     
                     var result_arrays = checkArray(result);
 
-                    if( result_arrays.length < 5 ){
+                    if( result_arrays.length <= 5 ){
+                        $('.render').append("");
                         for(var el in result_arrays){
                             renderTable(result_arrays[el])
                         }
